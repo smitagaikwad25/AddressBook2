@@ -1,1 +1,20 @@
-[{"firstName":"smita","lastName":"shinde","address":"thane","city":"thane","state":"MH","zip":"606060","phoneNumber":"0987654321"}]
+[
+    {
+        "firstName": "smita",
+        "lastName": "shinde",
+        "address": "thane",
+        "city": "thane",
+        "state": "MH",
+        "zip": "606060",
+        "phoneNumber": "0987654321"
+    },
+    {
+        "firstName": "anvi",
+        "lastName": "randive",
+        "address": "pune",
+        "city": "pune",
+        "state": "MH",
+        "zip": "100000",
+        "phoneNumber": "0123456456"
+    },
+]

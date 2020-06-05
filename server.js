@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 require('./main/routes/addressbook.routes')(app);
 
-var server = app.listen(3007, () => {
+var server = app.listen(3001, () => {
     console.log("server is listenling on port 3001");
 });
 

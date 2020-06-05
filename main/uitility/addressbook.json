@@ -1,0 +1,29 @@
+[
+    {
+        "firstName": "sandip",
+        "lastName": "randive",
+        "address": "pune",
+        "city": "pune",
+        "state": "MH",
+        "zip": "100000",
+        "phoneNumber": "0987654321"
+    },
+    {
+        "firstName": "anvi",
+        "lastName": "randive",
+        "address": "pune",
+        "city": "pune",
+        "state": "MH",
+        "zip": "100000",
+        "phoneNumber": "0123456456"
+    },
+    {
+        "firstName": "nikita",
+        "lastName": "randive",
+        "address": "pune",
+        "city": "pune",
+        "state": "MH",
+        "zip": "100000",
+        "phoneNumber": "2222222222"
+    }
+]

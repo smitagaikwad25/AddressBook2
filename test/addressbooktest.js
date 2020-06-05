@@ -9,7 +9,7 @@ var addressbookData = fs.readFileSync('main/uitility/addressbook.js')
 
 describe('Test Cases for first api type', () => {
 
-    it('given details is in proper form should return status code 200', (done) => {
+    it('given  user details is in proper form should return status code 200', (done) => {
         chai.request(server)
             .post('/createrecord')
             .send({
@@ -97,5 +97,26 @@ describe('Test Cases for first api type', () => {
                 done();
             });
     });
+
+});
+
+describe('Test Cases for first api type', () => {
+
+
+    it('given file name when correct should return status code 200', (done) => {
+        chai.request(server)
+            .post('/createrecord')
+            .send({
+               
+            })
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
+    });
+
+
+
+
 
 })

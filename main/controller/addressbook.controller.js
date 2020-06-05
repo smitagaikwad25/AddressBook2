@@ -35,7 +35,7 @@ module.exports = {
                     phoneNumber: req.body.phoneNumber
                 }
                 addressBookService.createAddressBookRecord(userDetails, (err, data) => {
-                    
+
 
                     if (err) {
                         response.success = false;
@@ -53,6 +53,29 @@ module.exports = {
             }
         } catch (err) {
             res.status(500).send({ message: "erro occure" })
+        }
+    },
+
+    updateUserDetails(req, res) {
+        try {
+            const response = {};
+            addressBookService.updateUserDetails(req, (err, data) => {
+                if (err) {
+                    response.success = false;
+                    response.message = 'erro occurre while updating';
+                    response.err = err;
+                    return res.status(500).send(response);
+                } else {
+                    response.data = data
+                    response.success = true;
+                    response.message = 'user information update successfully done'
+                    return res.status(200).send(response)
+                }
+            })
+
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({ message: "Internal erro occure" });
         }
     }
 }
