@@ -1,10 +1,10 @@
 // const addressBook = require('main/uitility/addressbook.json')
 const fs = require("fs");
+var data = fs.readFileSync('main/uitility/addressbook.json')
+var json = JSON.parse(data);
 
 module.exports = {
     createAddressBookRecord(userDetail, callback) {
-        var data = fs.readFileSync('main/uitility/addressbook.json')
-        var json = JSON.parse(data);
         json.push(userDetail)
         fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
             if (err) {
@@ -15,8 +15,6 @@ module.exports = {
     },
 
     updateUserDetails(req, callback) {
-        var data = fs.readFileSync('main/uitility/addressbook.json')
-        var json = JSON.parse(data);
         for (var i = 0; i < json.length; i++) {
             if (json[i].phoneNumber === req.params.phoneNumber) {
                 json[i].firstName = req.body.firstName;
@@ -33,6 +31,21 @@ module.exports = {
                 return callback(err, null)
             }
             return callback(null, { meassage: "sucessfully updated user detail" })
+        }))
+    },
+
+    deleteUser(req, callback) {
+        for (var i = 0; i < json.length; i++) {
+            if (json[i].phoneNumber === req.params.phoneNumber) {
+                json.splice(i, 1);
+                break;
+            }
+        }
+        fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
+            if (err) {
+                return callback(err, null)
+            }
+            return callback(null, { meassage: "sucessfully deleted user detail" })
         }))
     }
 

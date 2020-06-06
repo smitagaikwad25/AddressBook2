@@ -103,17 +103,17 @@ describe('Test Cases for first api type', () => {
 describe('Test Cases for first api type', () => {
 
 
-    it('given file name when correct should return status code 200', (done) => {
-        chai.request(server)
-            .post('/createrecord')
-            .send({
+    // it('given file name when correct should return status code 200', (done) => {
+    //     chai.request(server)
+    //         .post('/createrecord')
+    //         .send({
                
-            })
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
-    });
+    //         })
+    //         .end((err, res) => {
+    //             res.should.have.status(200);
+    //             done();
+    //         });
+    // });
 
 
 

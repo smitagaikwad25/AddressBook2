@@ -49,7 +49,6 @@ module.exports = {
                         return res.status(200).send(response);
                     }
                 });
-
             }
         } catch (err) {
             res.status(500).send({ message: "erro occure" })
@@ -72,7 +71,28 @@ module.exports = {
                     return res.status(200).send(response)
                 }
             })
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({ message: "Internal erro occure" });
+        }
+    },
 
+    deleteUser(req, res) {
+        try {
+            const response = {};
+            addressBookService.deleteUser(req, (err, data) => {
+                if (err) {
+                    response.success = false;
+                    response.message = 'erro occurre while deleting ';
+                    response.err = err;
+                    return res.status(500).send(response);
+                } else {
+                    response.data = data
+                    response.success = true;
+                    response.message = 'user deleted successfully ';
+                    return res.status(200).send(response)
+                }
+            })
         } catch (err) {
             console.log(err);
             res.status(500).send({ message: "Internal erro occure" });
