@@ -14,6 +14,7 @@ module.exports = {
     },
 
     updateUserDetails(req, callback) {
+        var isExist = false;
         for (var i = 0; i < json.length; i++) {
             if (json[i].phoneNumber === req.params.phoneNumber) {
                 json[i].firstName = req.body.firstName;
@@ -24,9 +25,13 @@ module.exports = {
                 json[i].zip = req.body.zip
                 break;
             }
-            if(json[i].phoneNumber !== req.params.phoneNumber) {
-                throw new Error('user is not exist');
+            if (json[i].phoneNumber !== req.params.phoneNumber) {
+                isExist = true;
+                break
             }
+        }
+        if (isExist) {
+            return callback(null, { message: 'user is not exist' })
         }
         fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
             if (err) {
@@ -38,14 +43,19 @@ module.exports = {
     },
 
     deleteUser(req, callback) {
+        var isExist = false;
         for (var i = 0; i < json.length; i++) {
             if (json[i].phoneNumber === req.params.phoneNumber) {
                 json.splice(i, 1);
                 break;
             }
             if (json[i].phoneNumber !== req.params.phoneNumber) {
-                throw new Error('user is not exist');
+                isExist = true;
+                break
             }
+        }
+        if (isExist) {
+            return callback(null, { message: 'user is not exist' })
         }
         fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
             if (err) {
@@ -53,8 +63,7 @@ module.exports = {
             }
             return callback(null, { meassage: "sucessfully deleted user detail" })
         }))
-    }
-
+    },
 }
 
 

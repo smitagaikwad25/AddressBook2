@@ -80,16 +80,15 @@ module.exports = {
                         response.err = err;
                         return res.status(500).send(response);
                     } else {
-                        response.data = data
                         response.success = true;
-                        response.message = 'user information update successfully done'
+                        response.message = data.message
                         return res.status(200).send(response)
                     }
                 })
             }
         } catch (err) {
             console.log(err);
-            res.status(500).send({ message: "user is not exist with this phone number" });
+            res.status(500).send({ message: "erro occure" });
         }
     },
 
@@ -103,15 +102,15 @@ module.exports = {
                     response.err = err;
                     return res.status(500).send(response);
                 } else {
-                    response.data = data
                     response.success = true;
-                    response.message = 'user deleted successfully ';
+                    response.message = data.message;
                     return res.status(200).send(response)
                 }
             })
         } catch (err) {
             console.log(err);
-            res.status(500).send({ message: "user is not exist with this phone number" });
+            res.status(500).send({ message: "erro occure" });
         }
-    }
+    },
+
 }
