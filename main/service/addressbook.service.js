@@ -1,4 +1,3 @@
-// const addressBook = require('main/uitility/addressbook.json')
 const fs = require("fs");
 var data = fs.readFileSync('main/uitility/addressbook.json')
 var json = JSON.parse(data);
@@ -25,6 +24,9 @@ module.exports = {
                 json[i].zip = req.body.zip
                 break;
             }
+            if(json[i].phoneNumber !== req.params.phoneNumber) {
+                throw new Error('user is not exist');
+            }
         }
         fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
             if (err) {
@@ -32,6 +34,7 @@ module.exports = {
             }
             return callback(null, { meassage: "sucessfully updated user detail" })
         }))
+
     },
 
     deleteUser(req, callback) {
@@ -39,6 +42,9 @@ module.exports = {
             if (json[i].phoneNumber === req.params.phoneNumber) {
                 json.splice(i, 1);
                 break;
+            }
+            if (json[i].phoneNumber !== req.params.phoneNumber) {
+                throw new Error('user is not exist');
             }
         }
         fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
