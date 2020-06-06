@@ -64,6 +64,20 @@ module.exports = {
             return callback(null, { meassage: "sucessfully deleted user detail" })
         }))
     },
+
+    searchUser(req, callback) {
+        var isExist = false;
+        var jsonData;
+        for (var i = 0; i < json.length; i++) {
+            if (json[i].phoneNumber === req.params.phoneNumber) {
+                jsonData = json[i];
+                console.log("data after search--->", jsonData);
+            }
+
+        }
+        return callback(null, jsonData)
+    }
+
 }
 
 

@@ -113,4 +113,26 @@ module.exports = {
         }
     },
 
+    searchUser(req, res) {
+        try {
+            const response = {};
+            addressBookService.searchUser(req, (err, data) => {
+                if (err) {
+                    response.success = false;
+                    response.message = 'erro occurre while searching user ';
+                    response.err = err;
+                    return res.status(500).send(response);
+                } else {
+                    response.data = data
+                    response.success = true;
+                    response.message = data.message;
+                    return res.status(200).send(response)
+                }
+            })
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({ message: "erro occure" });
+        }
+
+    }
 }
