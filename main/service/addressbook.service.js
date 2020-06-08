@@ -66,14 +66,15 @@ module.exports = {
     },
 
     searchUser(req, callback) {
-        var isExist = false;
+       console.log("req parms--->", req.query);
+       
+
         var jsonData;
         for (var i = 0; i < json.length; i++) {
-            if (json[i].phoneNumber === req.params.phoneNumber) {
+            if (json[i].phoneNumber === req.query.phoneNumber || json[i].zip === req.query.zip || json[i].state === req.query.state) {
                 jsonData = json[i];
                 console.log("data after search--->", jsonData);
             }
-
         }
         return callback(null, jsonData)
     }
