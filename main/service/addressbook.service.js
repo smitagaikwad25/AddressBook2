@@ -66,15 +66,18 @@ module.exports = {
     },
 
     searchUser(req, callback) {
-       console.log("req parms--->", req.query);
-       
-
         var jsonData;
+        var isExist = false;
         for (var i = 0; i < json.length; i++) {
             if (json[i].phoneNumber === req.query.phoneNumber || json[i].zip === req.query.zip || json[i].state === req.query.state) {
                 jsonData = json[i];
-                console.log("data after search--->", jsonData);
             }
+            if (json[i].phoneNumber === req.query.phoneNumber || json[i].zip === req.query.zip || json[i].state === req.query.state) {
+                isExist = true
+            }
+        }
+        if (isExist) {
+            return callback(null, { message: 'user is not exist' })
         }
         return callback(null, jsonData)
     }
