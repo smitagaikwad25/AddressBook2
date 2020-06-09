@@ -3,6 +3,7 @@ var data = fs.readFileSync('main/uitility/addressbook.json')
 var json = JSON.parse(data);
 
 module.exports = {
+
     createAddressBookRecord(userDetail, callback) {
         json.push(userDetail)
         fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
@@ -67,15 +68,24 @@ module.exports = {
 
     searchUser(req, callback) {
         var jsonData;
+        console.log("param at service---->", req.query);
         var isExist = false;
         for (var i = 0; i < json.length; i++) {
+
             if (json[i].phoneNumber === req.query.phoneNumber || json[i].zip === req.query.zip || json[i].state === req.query.state) {
                 jsonData = json[i];
+                console.log("data after search--->", jsonData);
+                break;
             }
-            if (json[i].phoneNumber === req.query.phoneNumber || json[i].zip === req.query.zip || json[i].state === req.query.state) {
-                isExist = true
-            }
+
+            // if (json[i].phoneNumber !== req.query.phoneNumber || json[i].zip !== req.query.zip || json[i].state !== req.query.state) {
+            //     isExist = true;
+            //     console.log("at exist");
+            //     break;
+            // }
+
         }
+
         if (isExist) {
             return callback(null, { message: 'user is not exist' })
         }
