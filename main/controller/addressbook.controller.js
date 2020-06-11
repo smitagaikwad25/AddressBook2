@@ -33,7 +33,7 @@ module.exports = {
                 .isMobilePhone()
                 .exists();
 
-           
+
 
             const error = req.validationErrors();
 
@@ -74,14 +74,30 @@ module.exports = {
     updateUserDetails(req, res) {
         try {
             const response = {};
-
-            req.checkBody('firstName').exists();
-            req.checkBody('lastName').exists();
-            req.checkBody('address').exists();
-            req.checkBody('city').exists();
-            req.checkBody('state').exists();
-            req.checkBody('zip').exists();
-            req.checkBody('phoneNumber').exists();
+            req.checkBody('firstName')
+                .isAlpha().withMessage('first name is not in proper formate')
+                .isLength({ min: 4 }).withMessage('first name should have min 4 characters')
+                .exists();
+            req.checkBody('lastName')
+                .isAlpha().withMessage('last name is not in proper formate')
+                .isLength({ min: 4 }).withMessage('last name should have min 4 characters')
+                .exists();
+            req.checkBody('address')
+                .isAlphanumeric()
+                .exists();
+            req.checkBody('city')
+                .isAlpha().withMessage('city name should have min 2 characters')
+                .exists();
+            req.checkBody('state')
+                .isAlpha()
+                .exists();
+            req.checkBody('zip')
+                .isNumeric().withMessage('zip code should be in digits only')
+                .isLength({ min: 6, max: 6 })
+                .exists();
+            req.checkBody('phoneNumber')
+                .isMobilePhone()
+                .exists();
 
             const error = req.validationErrors();
 
