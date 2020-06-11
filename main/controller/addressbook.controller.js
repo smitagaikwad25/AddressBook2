@@ -32,10 +32,8 @@ module.exports = {
             req.checkBody('phoneNumber')
                 .isMobilePhone()
                 .exists();
-
-
-
-            const error = req.validationErrors();
+            
+                const error = req.validationErrors();
 
             if (error) {
                 response.success = false;
