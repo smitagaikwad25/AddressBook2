@@ -32,8 +32,8 @@ module.exports = {
             req.checkBody('phoneNumber')
                 .isMobilePhone()
                 .exists();
-            
-                const error = req.validationErrors();
+
+            const error = req.validationErrors();
 
             if (error) {
                 response.success = false;
@@ -106,7 +106,16 @@ module.exports = {
                 return res.status(500).send(response);
 
             } else {
-                addressBookService.updateUserDetails(req, (err, data) => {
+                var userDetails = {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    address: req.body.address,
+                    city: req.body.city,
+                    state: req.body.state,
+                    zip: req.body.zip,
+                    phoneNumber: req.body.phoneNumber
+                }
+                addressBookService.updateUserDetails(userDetails, (err, data) => {
                     if (err) {
                         response.success = false;
                         response.message = 'erro occurre while updating';

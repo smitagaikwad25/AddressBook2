@@ -14,19 +14,19 @@ module.exports = {
         }))
     },
 
-    updateUserDetails(req, callback) {
+    updateUserDetails(userDetail, callback) {
         var isExist = false;
         for (var i = 0; i < json.length; i++) {
-            if (json[i].phoneNumber === req.params.phoneNumber) {
-                json[i].firstName = req.body.firstName;
-                json[i].lastName = req.body.lastName;
-                json[i].address = req.body.address;
-                json[i].city = req.body.city;
-                json[i].state = req.body.state;
-                json[i].zip = req.body.zip
+            if (json[i].phoneNumber === userDetail.phoneNumber) {
+                json[i].firstName = userDetail.firstName;
+                json[i].lastName = userDetail.lastName;
+                json[i].address = userDetail.address;
+                json[i].city = userDetail.city;
+                json[i].state = userDetail.state;
+                json[i].zip = userDetail.zip
                 break;
             }
-            if (json[i].phoneNumber !== req.params.phoneNumber) {
+            if (json[i].phoneNumber !== userDetail.phoneNumber) {
                 isExist = true;
                 break
             }
