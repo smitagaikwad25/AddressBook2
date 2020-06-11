@@ -16,5 +16,23 @@
         "state": "TN",
         "zip": "100008",
         "phoneNumber": "2222222222"
+    },
+    {
+        "firstName": "smita",
+        "lastName": "gaikwad",
+        "address": "mumbai",
+        "city": "mumbai",
+        "state": "JK",
+        "zip": "600000",
+        "phoneNumber": "0987654321"
+    },
+    {
+        "firstName": "prashant",
+        "lastName": "gaikwad",
+        "address": "thane",
+        "city": "thane",
+        "state": "MH",
+        "zip": "413122",
+        "phoneNumber": "8080405226"
     }
 ]
