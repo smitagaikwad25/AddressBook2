@@ -70,7 +70,6 @@ module.exports = {
         var jsonData;
         var isExist = false;
         for (var i = 0; i < json.length; i++) {
-
             if (json[i].phoneNumber === req.query.phoneNumber || json[i].zip === req.query.zip || json[i].state === req.query.state) {
                 jsonData = json[i];
                 break;
@@ -80,7 +79,6 @@ module.exports = {
                 break;
             }
         }
-
         if (isExist) {
             return callback(null, { message: 'user is not exist' })
         }
