@@ -3,6 +3,20 @@ var data = fs.readFileSync('main/uitility/addressbook.json')
 var json = JSON.parse(data);
 
 module.exports = {
+    isUserPresent(userDetail, callback) {
+        let isExist = false;
+        for (var i = 0; i < json.length; i++) {
+            if (json[i].phoneNumber === userDetail.phoneNumber) {
+                isExist = true;
+                break;
+            }
+        }
+        if (isExist) {
+            return callback(null, { message: 'user already exist' })
+        }
+        return callback(err, null)
+
+    },
 
     createAddressBookRecord(userDetail, callback) {
         json.push(userDetail)
@@ -27,7 +41,7 @@ module.exports = {
                 break;
             }
             if (json[i].phoneNumber !== userDetail.phoneNumber) {
-                isExist = true;
+                isExist = true; console.log("inside is exist");
                 break
             }
         }
@@ -83,6 +97,26 @@ module.exports = {
             return callback(null, { message: 'user is not exist' })
         }
         return callback(null, jsonData)
+    },
+
+    searchFileIfNotPresentCreateNew(filePath, callback) {
+        console.log("at service");
+        var filePath = req.params.dynamicRoute
+        var isExist = false
+        fs.access(filePath, function (err) {
+            if (err == null) {
+                console.log("file exist");
+                isExist = true
+            } else if (err.code === 'ENOENT') {
+                console.log("file not found");
+                fs.touch('/home/admin1/addressBook/main/uitility/book.json');
+            }
+        })
+        if (isExist) {
+            return callback(null, { message: 'file  already exist' })
+        }
+        return callback(null, { message: 'file does not exit created new one' })
+
     }
 
 }

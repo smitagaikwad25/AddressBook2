@@ -5,5 +5,6 @@ module.exports = (app) => {
     app.put('/update/user/:phoneNumber', addressBookController.updateUserDetails)
     app.delete('/delete/user/:phoneNumber', addressBookController.deleteUser)
     app.get('/search/user/:phoneNumber?/:zip?/:state?', addressBookController.searchUser)
+    app.post('/find/file/:dynamicRoute', addressBookController.searchFileIfNotPresentCreateNew)
 
 }
