@@ -14,8 +14,7 @@ module.exports = {
         if (isExist) {
             return callback(null, { message: 'user already exist' })
         }
-        return callback(err, null)
-
+        return callback({ meassage: 'user is not exist' })
     },
 
     createAddressBookRecord(userDetail, callback) {
@@ -29,7 +28,6 @@ module.exports = {
     },
 
     updateUserDetails(userDetail, callback) {
-        var isExist = false;
         for (var i = 0; i < json.length; i++) {
             if (json[i].phoneNumber === userDetail.phoneNumber) {
                 json[i].firstName = userDetail.firstName;
@@ -40,13 +38,6 @@ module.exports = {
                 json[i].zip = userDetail.zip
                 break;
             }
-            if (json[i].phoneNumber !== userDetail.phoneNumber) {
-                isExist = true; console.log("inside is exist");
-                break
-            }
-        }
-        if (isExist) {
-            return callback(null, { message: 'user is not exist' })
         }
         fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
             if (err) {
