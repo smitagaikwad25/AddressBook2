@@ -4,6 +4,8 @@ var json = JSON.parse(data);
 
 module.exports = {
     isUserPresent(userDetail, callback) {
+        console.log("userDetail---->", userDetail);
+
         let isExist = false;
         for (var i = 0; i < json.length; i++) {
             if (json[i].phoneNumber === userDetail.phoneNumber) {
@@ -55,13 +57,6 @@ module.exports = {
                 json.splice(i, 1);
                 break;
             }
-            if (json[i].phoneNumber !== req.params.phoneNumber) {
-                isExist = true;
-                break
-            }
-        }
-        if (isExist) {
-            return callback(null, { message: 'user is not exist' })
         }
         fs.writeFile('main/uitility/addressbook.json', JSON.stringify(json, null, 4), ((err, data) => {
             if (err) {

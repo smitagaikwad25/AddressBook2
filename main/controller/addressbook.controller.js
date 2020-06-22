@@ -151,16 +151,24 @@ module.exports = {
     deleteUser(req, res) {
         try {
             const response = {};
-            addressBookService.deleteUser(req, (err, data) => {
-                if (err) {
+            addressBookService.isUserPresent({ phoneNumber: req.params.phoneNumber }, (err, data) => {
+                if (data == null) {
                     response.success = false;
-                    response.message = 'erro occurre while deleting ';
-                    response.err = err;
+                    response.message = "user is not exist";
                     return res.status(500).send(response);
                 } else {
-                    response.success = true;
-                    response.message = data.message;
-                    return res.status(200).send(response)
+                    addressBookService.deleteUser(req, (err, data) => {
+                        if (err) {
+                            response.success = false;
+                            response.message = 'erro occurre while deleting ';
+                            response.err = err;
+                            return res.status(500).send(response);
+                        } else {
+                            response.success = true;
+                            response.message = "user deleted successfully";
+                            return res.status(200).send(response)
+                        }
+                    })
                 }
             })
         } catch (err) {
