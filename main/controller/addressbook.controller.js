@@ -2,7 +2,6 @@ const addressBookService = require('../service/addressbook.service');
 
 module.exports = {
     createAddressBookRecord(req, res) {
-        console.log("req at controller --->", req.body);
         try {
             var response = {};
             addressBookService.isUserPresent({ phoneNumber: req.body.phoneNumber }, (err, data) => {
