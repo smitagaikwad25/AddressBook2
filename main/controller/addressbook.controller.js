@@ -180,26 +180,17 @@ module.exports = {
     searchUser(req, res) {
         try {
             const response = {};
-            addressBookService.isUserPresent({ phoneNumber: req.query.phoneNumber } || { zip: req.query.zip } || { state: req.query.state }, (err, data) => {
-                if (data == null) {
+            addressBookService.searchUser(req, (err, data) => {
+                if (err) {
                     response.success = false;
-                    response.message = "user is not exist";
+                    response.message = 'erro occurre while searching user ';
+                    response.err = err;
                     return res.status(500).send(response);
-
                 } else {
-                    addressBookService.searchUser(req, (err, data) => {
-                        if (err) {
-                            response.success = false;
-                            response.message = 'erro occurre while searching user ';
-                            response.err = err;
-                            return res.status(500).send(response);
-                        } else {
-                            response.data = data
-                            response.success = true;
-                            response.message = data.message;
-                            return res.status(200).send(response)
-                        }
-                    })
+                    response.data = data
+                    response.success = true;
+                    response.message = data.message;
+                    return res.status(200).send(response)
                 }
             })
         } catch (err) {

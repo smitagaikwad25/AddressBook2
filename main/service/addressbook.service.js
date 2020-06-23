@@ -4,11 +4,9 @@ var json = JSON.parse(data);
 
 module.exports = {
     isUserPresent(userDetail, callback) {
-        console.log("userDetail---->", userDetail);
-
         let isExist = false;
         for (var i = 0; i < json.length; i++) {
-            if (json[i].phoneNumber === userDetail.phoneNumber || json[i].zip === userDetail.zip || json[i].state === userDetail.state) {
+            if (json[i].phoneNumber === userDetail.phoneNumber) {
                 isExist = true;
                 break;
             }
@@ -68,13 +66,20 @@ module.exports = {
 
     searchUser(req, callback) {
         var jsonData;
+        let isExist = false;
         for (var i = 0; i < json.length; i++) {
-            if (json[i].phoneNumber === req.query.phoneNumber || json[i].zip === req.query.zip || json[i].state === req.query.state) {
+            if (json[i].phoneNumber === req.query.phoneNumber ||
+                json[i].zip === req.query.zip || json[i].state === req.query.state) {
                 jsonData = json[i];
+                isExist = true;
                 break;
             }
         }
-        return callback(null, jsonData)
+        if (isExist) {
+            return callback(null, jsonData)
+        }
+        return callback(null, { meassage: "user is not exist" })
+
     },
 
     searchFileIfNotPresentCreateNew(filePath, callback) {
