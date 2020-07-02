@@ -34,7 +34,7 @@ module.exports = {
                 json[i].lastName = userDetail.lastName;
                 json[i].address = userDetail.address;
                 json[i].city = userDetail.city;
-                json[i].state = userDetail.state;
+                json[i].state = userDetail.stateCode;
                 json[i].zip = userDetail.zip
                 break;
             }
@@ -69,7 +69,7 @@ module.exports = {
         let isExist = false;
         for (var i = 0; i < json.length; i++) {
             if (json[i].phoneNumber === req.query.phoneNumber ||
-                json[i].zip === req.query.zip || json[i].state === req.query.state) {
+                json[i].zip === req.query.zip || json[i].stateCode === req.query.stateCode) {
                 jsonData = json[i];
                 isExist = true;
                 break;

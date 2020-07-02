@@ -4,7 +4,7 @@
         "lastName": "randive",
         "address": "pune",
         "city": "pune",
-        "state": "MH",
+        "stateCode": "MH",
         "zip": "100000",
         "phoneNumber": "0123456456"
     },
@@ -13,7 +13,7 @@
         "lastName": "randive",
         "address": "pune",
         "city": "pune",
-        "state": "TN",
+        "stateCode": "TN",
         "zip": "100008",
         "phoneNumber": "2222222222"
     },
@@ -22,8 +22,17 @@
         "lastName": "gaikwad",
         "address": "mumbai",
         "city": "mumbai",
-        "state": "JK",
+        "stateCode": "JK",
         "zip": "600000",
         "phoneNumber": "0987654321"
+    },
+    {
+        "firstName": "reshma",
+        "lastName": "shinde",
+        "address": "aklju",
+        "city": "solapur",
+        "stateCode": "MH",
+        "zip": "616161",
+        "phoneNumber": "8990476337"
     }
 ]

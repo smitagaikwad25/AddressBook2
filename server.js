@@ -5,6 +5,10 @@ const expressValidator = require('express-validator');
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+var cors = require("cors");
+app.use(cors());
+
+
 app.use(bodyParser.json())
 
 app.use(expressValidator())

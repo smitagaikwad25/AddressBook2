@@ -24,7 +24,7 @@ module.exports = {
                     req.checkBody('city')
                         .isAlpha().withMessage('city name should have min 2 characters')
                         .exists();
-                    req.checkBody('state')
+                    req.checkBody('stateCode')
                         .isAlpha()
                         .exists();
                     req.checkBody('zip')
@@ -48,7 +48,7 @@ module.exports = {
                             lastName: req.body.lastName,
                             address: req.body.address,
                             city: req.body.city,
-                            state: req.body.state,
+                            stateCode: req.body.stateCode,
                             zip: req.body.zip,
                             phoneNumber: req.body.phoneNumber
                         }
@@ -97,7 +97,7 @@ module.exports = {
                     req.checkBody('city')
                         .isAlpha().withMessage('city name should have min 2 characters')
                         .exists();
-                    req.checkBody('state')
+                    req.checkBody('stateCode')
                         .isAlpha()
                         .exists();
                     req.checkBody('zip')
@@ -121,7 +121,7 @@ module.exports = {
                             lastName: req.body.lastName,
                             address: req.body.address,
                             city: req.body.city,
-                            state: req.body.state,
+                            state: req.body.stateCode,
                             zip: req.body.zip,
                             phoneNumber: req.body.phoneNumber
                         }
