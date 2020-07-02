@@ -200,11 +200,7 @@ module.exports = {
     },
 
     searchFileIfNotPresentCreateNew(req, res) {
-        console.log("at controller");
         try {
-            console.log("at controller for search file");
-            console.log("file search req at controller", req.params.dynamicRoute);
-
             const response = {};
             var filePath = req.params.dynamicRoute
 
